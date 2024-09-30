@@ -1,0 +1,33 @@
+<div class="px-7 mt-20 font-sans font-semibold text-white">
+    @if(isLoading) {
+    <div class="flex my-5 bg-gray-800 p-10">
+        <img class="h-[400px] w-[45%] rounded-lg shadow-lg shadow-gray-900 hover:scale-110 transition-transform duration-300"
+            [src]="SingleProduct.productUrl" alt="'product" />
+        <div class="ml-10 mt-2">
+            <p class="text-5xl py-1">{{SingleProduct.productName}}</p>
+            <p class="text-lg pb-2 text-gray-300">({{SingleProduct.productCategory}})</p>
+            <p class="text-xl pt-1 pb-2 text-gray-300">Price : <span class="text-red-400">&#x20b9;{{SingleProduct.productPrice}}</span></p>
+            <p class="text-lg font-light pt-1 pb-2 text-gray-400">{{SingleProduct.productDescription}}</p>
+            <button (click)="addCart(operation)"
+                class="bg-yellow-500 text-gray-800 rounded p-2 mt-10 border border-yellow-600 hover:bg-yellow-400 hover:font-medium hover:scale-105 transition-all duration-300">
+                {{operation}}
+            </button>
+        </div>
+    </div>
+    <h3 class="mb-1 text-xl text-gray-800">Related Products</h3>
+    <div class="flex flex-wrap gap-5">
+        @for(product of sameProduct; track product) {
+        <div (click)="Product(product.productId)"
+            class="cursor-pointer hover:scale-105 hover:shadow-xl transition-shadow duration-300 bg-gray-800 rounded-lg w-[30%] p-2">
+            <div class="bg-gray-700 mb-2 rounded-lg">
+                <img [src]="product.productUrl" alt="'product" class="mx-auto rounded-lg object-cover h-[150px] w-[150px]" />
+            </div>
+            <p class="text-center text-gray-200">{{product.productName}}</p>
+            <p class="font-semibold text-gray-400 text-center">Price : <span class="text-red-400">&#x20b9;{{product.productPrice}}</span></p>
+        </div>
+        }
+    </div>
+    } @else {
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    }
+</div>

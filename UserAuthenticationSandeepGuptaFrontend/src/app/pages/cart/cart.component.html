@@ -1,0 +1,36 @@
+@if(order) {
+    <div class="w-[30%] h-[200px] bg-gray-800 mx-auto mt-44 flex items-center justify-center rounded-lg shadow-lg shadow-gray-900">
+        <h1 class="text-green-400 text-xl font-serif font-bold p-24">Order Placed Successfully!!</h1>
+    </div>
+} @else {
+    @if(cart.length != 0) {
+        <div class="font-sans text-white">
+            @for(product of cart; track product) {
+                <div class="flex my-5 shadow-lg bg-gray-700 rounded-lg py-4 px-10 transition-shadow duration-300 hover:shadow-xl">
+                    <img class="h-[200px] w-[30%] rounded-lg bg-white" [src]="product.productUrl" alt="product" />
+                    <div class="ml-5">
+                        <p class="text-3xl py-1">{{ product.productName }}</p>
+                        <p class="text-lg pb-2 text-gray-400">{{ product.productCategory }}</p>
+                        <p class="text-xl pt-1 pb-2 text-gray-300">Price: 
+                            <span class="text-red-500">&#x20b9;{{ product.productPrice }}</span>
+                        </p>
+                        <p class="text-lg font-light text-gray-300 pt-1 pb-2">{{ product.productDescription }}</p>
+                        <button (click)="removeCart(product, 'Remove From Cart')"
+                                class="bg-yellow-500 rounded p-2 mt-5 border border-yellow-600 hover:bg-yellow-400 hover:font-medium hover:scale-105 transition-all duration-300">
+                            Remove
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="text-center bg-gray-800 p-5">
+            <button class="bg-yellow-500 p-3 rounded border border-yellow-600 hover:bg-yellow-400 hover:font-medium transition-all duration-300" (click)="orderPlaced()">
+                Place Order!
+            </button>
+        </div>
+    } @else {
+        <div class="text-center mt-56 font-sans font-bold text-3xl text-gray-800">
+            No products in the cart!!
+        </div>
+    }
+}

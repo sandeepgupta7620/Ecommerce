@@ -1,0 +1,24 @@
+<div class="flex font-sans gap-2 my-5 mt-8 flex-wrap">
+    @for(product of allProduct; track product){
+      <div
+        (click)="Product(product.productId)"
+        class="hover:scale-105 hover:shadow-xl cursor-pointer mx-auto bg-gray-800 hover:bg-gray-700 text-white shadow-lg shadow-gray-900 rounded w-[30%] my-auto p-2 transition-all duration-300 ease-in-out h-[350px] flex flex-col mb-8"
+      >
+        <div class="bg-gray-900 mb-2 rounded flex-grow flex items-center justify-center">
+          <img
+            [src]="product.productUrl"
+            alt="'product"
+            class="mx-auto rounded transition-transform duration-300 ease-in-out object-cover h-[150px] w-[150px]"
+          />
+        </div>
+        <div class="flex-grow flex flex-col justify-center items-center">
+          <p class="font-semibold text-gray-200 text-center">{{ product.productName }}</p>
+          <p class="font-semibold text-gray-400 text-center">
+            Price :
+            <span class="text-green-400">&#x20b9;{{ product.productPrice }}</span>
+          </p>
+        </div>
+      </div>
+    }
+  </div>
+  
